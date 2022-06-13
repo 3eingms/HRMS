@@ -27,13 +27,15 @@ function AutoCompleteValidation({ name , skillName,...otherProps}) {
         id="tags-outlined"
         options={skillName}
         getOptionLabel={(option) => option}
-        onChange={(e, value) => setFieldValue(name, value)}
-        value={values[name] || []}
-        filterSelectedOptions
+        onChange={(e, value) =>{ setFieldValue(name, value);}}
+        // defaultValue={Array.isArray(values[name]) ? values[name] : []}
+        // value={Array.isArray(values[name]) ? values[name] : []}
+
         renderInput={(params) => (
           <TextField
             {...configAuto}
             {...params}
+            name={name}
             label="Skills"
             // placeholder="Favorites"
             fullWidth
