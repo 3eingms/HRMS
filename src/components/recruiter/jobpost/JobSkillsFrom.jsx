@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
-import AutoCompleteValidation from "../../FormValidation/AutoComplete";
-import ButtonWrapper from "./../../FormValidation/Button";
+import AutoCompleteValidation from "../../layout/FormValidation/AutoComplete";
+import ButtonWrapper from "./../../layout/FormValidation/Button";
 
 // mui packages
 import Grid from "@mui/material/Grid";
@@ -27,10 +27,11 @@ const skillName = [
   "laravel",
 ];
 
-const JobSkillsForm = ({ initialValues, skillPost }) => {
+const JobSkillsForm = ({ initialValues, skillPost,formValidation }) => {
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema ={formValidation}
       onSubmit={async (values) => {
         skillPost(values);
       }}

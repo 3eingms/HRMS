@@ -1,15 +1,17 @@
 import React from 'react'
 import {Formik,Form} from 'formik'
 import * as Yup from 'yup'
-import TextField from '../FormValidation/TextField';
-import DateTime from '../FormValidation/DateTime';
-import Button from '../FormValidation/Button'
-import axios from 'axios'
+import TextField from '../layout/FormValidation/TextField';
+import DateTime from '../layout/FormValidation/DateTime';
+import Button from '../layout/FormValidation/Button'
+import API from '../../config/API'
+
 
 // mui packages
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
+
 const ApplicantRegister = () => {
     const INITIAL_VALUE = {
         
@@ -36,15 +38,16 @@ const ApplicantRegister = () => {
         portfolioLink:Yup.string(),
         
     })
-    const PostUser =  (data) => {
-    const token = localStorage.getItem('userToken')
-    axios.post("http://192.168.1.45:9000/applicant/profile", data,{headers:{'Authorization':`${token}`}})
-    .then((res)=>{
-        console.log(res)
-    })
-    .catch((er)=>{
-        console.log(er)
-    })
+    const PostUser = async  (data) => {
+        try{
+            const res = await API.post('/applicant/profile',data)
+            console.log(res)
+        }
+        catch(er){
+            console.log(er,'error from catch')
+        }
+   
+
 }
 
   return (
@@ -59,7 +62,7 @@ const ApplicantRegister = () => {
             <Container>
                 <Grid container spacing={2} >
                     <Grid item xs={12} >
-                        <Typography>Find Your dream job with us</Typography>
+                        <Typography  >Find Your dream job with us</Typography>
                     </Grid>
                     {/* <Grid item xs={12} >
                         <TextField  name='user' label='user' values= '1'  />

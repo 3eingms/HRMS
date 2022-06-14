@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useField,useFormikContext } from 'formik';
 
-const CheckBoxWrapper = ({name,label,legend,...otherProps}) => {
+const CheckBoxWrapper = ({name,label,legend,error,...otherProps}) => {
     const {field,meta} = useField(name)
     const {setFieldValue} = useFormikContext()
 
@@ -16,22 +16,29 @@ const CheckBoxWrapper = ({name,label,legend,...otherProps}) => {
 
     const configFormControl = {}
 
-    if(meta && meta.touched && meta.error){
-        configFormControl.error = true
-    }
+    
 
     const configCheck = {
         ...otherProps,
         ...field,
         onChange: handleChange
     }
+    if(meta && meta.touched && meta.error){
+        configFormControl.error = true
+        configFormControl.helperText = meta.error
+    }
+
+console.log(configFormControl);
   return (
-    <FormControl {...configCheck}>
-    <FormLabel component='legend'>{legend}</FormLabel>
+    <FormControl {...configFormControl}>
+    <FormLabel component='legend'  >{legend}</FormLabel>
     <FormGroup>
-        <FormControlLabel control={<Checkbox/>} label={label} />
+        <FormControlLabel control={<Checkbox {...configFormControl} />} label={label} />
+        <div>{error && <p style={{color:"red"}}>{error}</p>}</div>
     </FormGroup>
+ 
 </FormControl>
+
   )
 }
 

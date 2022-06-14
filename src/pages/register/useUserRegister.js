@@ -1,6 +1,5 @@
-import React from 'react'
 import * as Yup from 'yup'
-import axios from 'axios'
+import API from './../../config/API'
 
 const useUserRegister = () => {
     const  INITIAL_VALUE = {
@@ -10,7 +9,7 @@ const useUserRegister = () => {
         password:'',
         password2:''
     }
-
+    console.log(API.defaults.headers);
     const formValidation = Yup.object().shape({
         email:Yup.string().email('Invalid Email! please enter correct email ').required('Email is Required!'),
         name:Yup.string().required('Name is Required!'),
@@ -19,19 +18,21 @@ const useUserRegister = () => {
         password2: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must be match')
     })
 
-    const postData = (data)=>{
+    const postData = async  (data)=>{
 
-
-        axios.post('http://192.168.1.45:9000/accounts/register',data)
-        .then((res)=>{
+        try{
+            const res = await API.post('accounts/register',data)
             console.log(res)
             console.log(res.data.token)
             localStorage.setItem('userToken',res.data.token)
-        })
-
-        .catch((er)=>{
+        }
+        catch(er){
             console.log(er,'error from catch')
-        })
+        }
+
+
+
+        
 
     }
   return{

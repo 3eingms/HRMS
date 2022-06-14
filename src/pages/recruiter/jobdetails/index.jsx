@@ -3,9 +3,9 @@ import JobDetailsForm from '../../../components/recruiter/jobpost/JobDetailsForm
 import useJobDetails from './useJobDetails'
 
 const JobDetails = () => {
-    const {initialValues,postDetails} = useJobDetails()
+    const {initialValues,postDetails,formValidation} = useJobDetails()
   return (
-    <JobDetailsForm initialValues={initialValues} postDetails={postDetails} />
+    <JobDetailsForm initialValues={initialValues} postDetails={postDetails} formValidation={formValidation} />
   )
 }
 

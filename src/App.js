@@ -13,30 +13,34 @@ import JobDetails from './pages/recruiter/jobdetails';
 import PostRequirement from './pages/recruiter/jobRequirement';
 import SalaryPerks from './pages/recruiter/jobSalaryPerks';
 import JobSkills from './pages/recruiter/jobSkill/Index';
+import theme from './config/theme';
+import { ThemeProvider } from '@mui/material';
 
 
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route  path='/1' element={<UserRegister />}/>
-          <Route  path='/2' element={ <PersonalDetails />}/>
-          <Route  path='/2/1' element={ <EducationDetails />}/>
-          <Route  path='/2/1/2' element={ <ExperienceDetails />}/>
-          <Route  path='/2/1/3' element={ <SkillDetails />}/>
-          <Route  path='/2/1/4' element={ <ProjectDetails />}/>
-          <Route  path='/3' element={ <ApplicantRegister/>}/>
-          <Route  path='/1/1' element={ <UserLogin/>}/>
+          <Route  path='/userRegister' element={<UserRegister />}/>
+          <Route  path='/addPersonal' element={ <PersonalDetails />}/>
+          <Route  path='/addEducation' element={ <EducationDetails />}/>
+          <Route  path='/addExperience' element={ <ExperienceDetails />}/>
+          <Route  path='/addSkill' element={ <SkillDetails />}/>
+          <Route  path='/addProject' element={ <ProjectDetails />}/>
+          <Route  path='/applicantRegister' element={ <ApplicantRegister/>}/>
+          <Route  path='/userLogin' element={ <UserLogin/>}/>
           {/* recruiter */}
-          <Route  path='/10' element={ <JobDetails/>}/>
-          <Route  path='/10/1' element={ <PostRequirement/>}/>
-          <Route  path='/10/2' element={ <SalaryPerks/>}/>
-          <Route  path='/10/3' element={ <JobSkills/>}/>
+          <Route  path='/addJob' element={ <JobDetails/>}/>
+          <Route  path='/addJobReq' element={ <PostRequirement/>}/>
+          <Route  path='/addJobSalary' element={ <SalaryPerks/>}/>
+          <Route  path='/addJobSkill' element={ <JobSkills/>}/>
         </Routes>
       </BrowserRouter>
 
     </div>
+    </ThemeProvider>
   );
 }
 

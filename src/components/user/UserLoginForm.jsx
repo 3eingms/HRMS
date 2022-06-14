@@ -1,8 +1,8 @@
 import { Container, Grid, Typography } from '@mui/material'
 import { Form, Formik } from 'formik'
 import React from 'react'
-import ButtonWrapper from '../FormValidation/Button'
-import TextFieldWrapper from '../FormValidation/TextField'
+import ButtonWrapper from '../layout/FormValidation/Button'
+import TextFieldWrapper from '../layout/FormValidation/TextField'
 
 const UserLoginForm = ({loginData,Initial_value,formValidation}) => {
   return (

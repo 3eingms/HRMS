@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import * as Yup from 'yup'
+import API from '../../../config/API';
 const usePersonal = () => {
     const INITIAL_VALUE = {
         email:'',
@@ -20,15 +21,16 @@ const usePersonal = () => {
         preferred_language:Yup.string().required('language is required'),
     })
 
-    const  PersonalData =(data)=>{
-        axios.post('http://192.168.1.45:9000/applicant/personal_detail/0',data)
-        .then((res)=>{
+    const PersonalData = async (data)=>{
+        try{
+            const res = await API.post('/applicant/personal_detail/0',data)
             console.log(res)
-        })
-        .catch((er)=>{
-            console.log(er,'error azar')
-        })
+        }
+        catch(error){
+            console.log(error)
+        }
     }
+
   return {
     INITIAL_VALUE ,PersonalData ,formValidation 
   }

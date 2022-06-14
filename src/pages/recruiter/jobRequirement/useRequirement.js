@@ -1,4 +1,5 @@
-import axios from 'axios'
+import API from '../../../config/API'
+import * as Yup from 'yup'
 
 function useRequirement() {
     const initialValues =  {
@@ -7,19 +8,24 @@ function useRequirement() {
         key_responsibilities:'',
     }
 
-    const postRequirement = (data)=>{
-        const token = localStorage.getItem('userToken')
-        console.log(token)
-        axios.post('http://192.168.1.45:9000/recruiter/job_details/0',data,{headers:{'Authorization':`${token}`}})
-        .then((res)=>{
+    const postRequirement = async (data)=>{
+        try{
+            const res = await API.post('/recruiter/job_details/0',data)
             console.log(res)
-        })
-        .catch((er)=>{
-            console.log(er,'error from catch')
-        })
+        }
+        catch(error){
+            console.log(error)
+        }
     }
+
+    const formValidation = Yup.object().shape({
+        qualification:Yup.string().required('qualification is required'),
+        exp_required:Yup.string().required('exprience is required'),
+        key_responsibilities:Yup.string().required('key responsibilities is required'),
+    })
+
   return {
-    initialValues,postRequirement
+    initialValues,postRequirement,formValidation
   }
 }
 

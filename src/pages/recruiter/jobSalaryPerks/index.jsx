@@ -3,9 +3,9 @@ import SaleryPerksForm from '../../../components/recruiter/jobpost/SaleryPerksFo
 import useSalaryPerk from './useSalaryPerk'
 
 const SalaryPerks = () => {
-    const {initialValues,PostSalaryPerks} =  useSalaryPerk()
+    const {initialValues,PostSalaryPerks,formValidation} =  useSalaryPerk()
   return (
-    <SaleryPerksForm  initialValues={initialValues} PostSalaryPerks={PostSalaryPerks}  />
+    <SaleryPerksForm  initialValues={initialValues} PostSalaryPerks={PostSalaryPerks} formValidation={formValidation} />
   )
 }
 

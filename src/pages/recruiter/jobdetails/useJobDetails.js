@@ -1,4 +1,5 @@
-import axios from 'axios'
+import API from '../../../config/API'
+import * as Yup from 'yup'
 
 const useJobDetails = () => {
     const initialValues = {
@@ -9,21 +10,33 @@ const useJobDetails = () => {
         no_of_opening:'',
         job_description:'',
         recruiter:'',
-        company_name:''
+        company_name:'',
+        city:''
     }
-    const postDetails = (data)=>{
-        const token = localStorage.getItem('userToken')
-        console.log(token)
-        axios.post('http://192.168.1.45:9000/recruiter/job_details/0',data,{headers:{'Authorization':`${token}`}})
-        .then((res)=>{
+
+    const formValidation = Yup.object().shape({
+        job_designation:Yup.string().required('designation is required'),
+        country:Yup.string().required('country name is required'),
+        job_address:Yup.string().required('country name is required'),
+        type_of_work:Yup.string().required(' work is required'),
+        no_of_opening:Yup.string().required(' no_of_opening is required'),
+        company_name:Yup.string().required(' company name is required'),
+        city:Yup.string().required(' city name is required'),
+        // recruiter:Yup.string().required(' recruiter is required'),
+    })
+
+    const postDetails = async (data)=>{
+        try{
+            const res = await API.post('/recruiter/job_details/0',data)
             console.log(res)
-        })
-        .catch((er)=>{
-            console.log(er,'error from catch')
-        })
+        }
+        catch(error){
+            console.log(error)
+        }
     }
+
   return {
-    initialValues,postDetails
+    initialValues,postDetails,formValidation
   }
 }
 

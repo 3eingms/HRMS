@@ -1,4 +1,5 @@
-import axios from 'axios'
+import API from '../../../config/API'
+import * as Yup from 'yup'
 
 const useSalaryPerk = () => {
     const initialValues = {
@@ -13,17 +14,24 @@ const useSalaryPerk = () => {
 
     }
 
-    const PostSalaryPerks = (data)=>{
-      axios.post('http://192.168.1.45:9000/recruiter/salaryandperks/0',data)
-      .then((res)=>{
+    const formValidation = Yup.object().shape({
+      min_salary:Yup.string().required('minimum salary is required'),
+      max_salary:Yup.string().required('maximum salary is required'),
+      probation_period:Yup.boolean().oneOf([true],'probation is required')
+    })
+
+    const PostSalaryPerks = async (data)=>{
+      try{
+        const res = await API.post('/recruiter/salaryandperks/0',data)
         console.log(res)
-      })
-      .catch((er)=>{
-        console.log('eror from catch',er)
-      })
+      }
+      catch(error){
+        console.log(error)
+      }
     }
+
   return {
-    initialValues,PostSalaryPerks
+    initialValues,PostSalaryPerks,formValidation
   }
 }
 

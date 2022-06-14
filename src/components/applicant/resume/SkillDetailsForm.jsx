@@ -1,6 +1,6 @@
 import { Formik, Form } from "formik";
-import ButtonWrapper from "../../FormValidation/Button";
-import AutoCompleteValidation from "../../FormValidation/AutoComplete";
+import ButtonWrapper from "../../layout/FormValidation/Button";
+import AutoCompleteValidation from "../../layout/FormValidation/AutoComplete";
 
 // mui packages
 import Grid from "@mui/material/Grid";

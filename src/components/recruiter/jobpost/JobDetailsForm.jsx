@@ -1,28 +1,31 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import TextFieldWrapper from "./../../FormValidation/TextField";
-import Select from "../../FormValidation/Select";
-import ButtonWrapper from "../../FormValidation/Button";
-import SelectWrapper from "../../FormValidation/Select";
+import TextFieldWrapper from "./../../layout/FormValidation/TextField";
+import ButtonWrapper from "../../layout/FormValidation/Button";
+import NewRadio from "../../layout/FormValidation/NewRadio";
+import UnstyledInputBasic from "../../layout/FormValidation/TextArea";
 
 // mui packages
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { Typography } from "@mui/material";
 
-import UnstyledInputBasic from "../../FormValidation/TextArea";
 
-import NewRadio from "../../FormValidation/NewRadio";
 
-const JobDetailsForm = ({ initialValues, postDetails }) => {
+
+const JobDetailsForm = ({ initialValues, postDetails,formValidation }) => {
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema ={formValidation}
       onSubmit={async (values) => {
         console.log(values);
         postDetails(values);
       }}
     >
+      {({errors})=> (
+
+    
       <Form>
         <Container>
           <Grid container spacing={2}>
@@ -46,9 +49,9 @@ const JobDetailsForm = ({ initialValues, postDetails }) => {
             <Grid item xs={6}>
               <TextFieldWrapper name="city" label="City" />
             </Grid>
-
+{console.log(errors)}
             <Grid item xs={6}>
-              <NewRadio label="Type Of Work">
+              <NewRadio error={errors?.type_of_work} label="Type Of Work">
                 <label>
                   <Field type="radio" name="type_of_work" value="part_time" />
                   Part Time
@@ -78,6 +81,7 @@ const JobDetailsForm = ({ initialValues, postDetails }) => {
           </Grid>
         </Container>
       </Form>
+       )}
     </Formik>
   );
 };

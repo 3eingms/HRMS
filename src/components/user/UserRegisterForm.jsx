@@ -1,8 +1,8 @@
 import React from 'react'
 import {Formik,Form} from 'formik'
-import TextField from '../FormValidation/TextField'
-import Select from '../FormValidation/Select'
-import Button from '../FormValidation/Button'
+import TextField from '../layout/FormValidation/TextField'
+import Select from '../layout/FormValidation/Select'
+import Button from '../layout/FormValidation/Button'
 
 
 // mui packages

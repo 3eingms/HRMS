@@ -1,5 +1,5 @@
-import axios from 'axios'
 import * as Yup from 'yup'
+import API from '../../../config/API'
 
 const useEducation = () => {
     const initialValue = {
@@ -35,15 +35,16 @@ const useEducation = () => {
         end_date: Yup.string().required('please enter end date'),
       })
 
-      const  educationDataPost = (data)=>{
-          axios.post('http://192.168.1.45:9000/applicant/education/0',data)
-          .then((res)=>{
-              console.log(res)
-          })
-          .catch((error)=>{
-            console.log(error,'error from catch')
-          })
+      const educationDataPost = async (data)=>{
+        try{
+          const res = await API.post('/applicant/education/0',data)
+          console.log(res)
+        }
+        catch(error){
+          console.log(error,'error from catch')
+        }
       }
+
   return {
       initialValue,Choice_Field, educationDataPost ,formValidation
   }

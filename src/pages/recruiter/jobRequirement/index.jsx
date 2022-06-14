@@ -3,9 +3,9 @@ import JobRequirementForm from '../../../components/recruiter/jobpost/JobRequire
 import useRequirement from './useRequirement'
 
 const PostRequirement = () => {
-    const {initialValues,postRequirement} = useRequirement()
+    const {initialValues,postRequirement,formValidation} = useRequirement()
   return (
-    <JobRequirementForm  initialValues={initialValues} postRequirement = {postRequirement} />
+    <JobRequirementForm  initialValues={initialValues} postRequirement = {postRequirement} formValidation={formValidation}/>
   )
 }
 

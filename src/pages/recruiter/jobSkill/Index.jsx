@@ -3,9 +3,9 @@ import JobSkillsForm from '../../../components/recruiter/jobpost/JobSkillsFrom'
 import useJobSkill from './useJobSkill'
 
 const JobSkills = () => {
-    const {initialValues,skillPost}  = useJobSkill()
+    const {initialValues,skillPost,formValidation}  = useJobSkill()
   return (
-    <JobSkillsForm initialValues={initialValues} skillPost={skillPost}/>
+    <JobSkillsForm initialValues={initialValues} skillPost={skillPost} formValidation={formValidation} />
   )
 }
 

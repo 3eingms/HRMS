@@ -1,6 +1,7 @@
+
 import React from 'react'
 
-const NewRadio = ({label,children,...otherProps}) => {
+const NewRadio = ({label,children,error,...otherProps}) => {
   return (
     <div >
     <div id="my-radio-group">{label}</div>
@@ -11,7 +12,9 @@ const NewRadio = ({label,children,...otherProps}) => {
       </label> */}
       {children}
      
-    </div></div>
+    </div>
+    <div>{error && <p style={{color:"red"}}>{error}</p>}</div>
+    </div>
   )
 }
 

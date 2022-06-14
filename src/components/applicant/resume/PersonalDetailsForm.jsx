@@ -1,10 +1,10 @@
 import React from 'react'
 import { Formik,Form } from 'formik'
-import TextField from '../../FormValidation/TextField';
+import TextField from '../../layout/FormValidation/TextField';
 import * as Yup from 'yup'
-import Button from '../../FormValidation/Button';
+import Button from '../../layout/FormValidation/Button';
 
-import Select from '../../FormValidation/Select';
+import Select from '../../layout/FormValidation/Select';
 
 // mui packages
 import Grid from '@mui/material/Grid';

@@ -1,6 +1,6 @@
 import {Formik , Form} from 'formik'
-import TextFieldWrapper from '../../FormValidation/TextField';
-import ButtonWrapper from '../../FormValidation/Button';
+import TextFieldWrapper from '../../layout/FormValidation/TextField';
+import ButtonWrapper from '../../layout/FormValidation/Button';
 
 // mui packages
 import Grid from "@mui/material/Grid";
@@ -9,9 +9,9 @@ import { Typography } from "@mui/material";
 
 
 
-const JobRequirementForm = ({initialValues,postRequirement})=>{
+const JobRequirementForm = ({initialValues,postRequirement,formValidation})=>{
     return(
-        <Formik initialValues={initialValues} onSubmit={async (values)=>{
+        <Formik initialValues={initialValues} validationSchema = {formValidation} onSubmit={async (values)=>{
             postRequirement(values)
         }} >
             <Form>

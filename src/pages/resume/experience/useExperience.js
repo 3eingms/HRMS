@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as Yup from 'yup'
+import API from '../../../config/API'
 
 const useExperience = () => {
     const initialValues = {
@@ -22,17 +23,19 @@ const useExperience = () => {
         performance:Yup.string().required('performance is required!'),
         no_of_years:Yup.string().required('experience is required!'),
     })
-    const experiencePostData=(data)=>{
-        const token = localStorage.getItem('userToken')
-        console.log(token)
-        axios.post('http://192.168.1.45:9000/applicant/experience',data,{headers:{Authorization:`${token}`}})
-        .then((res)=>{
+
+
+    const   experiencePostData = async (data)=>{
+        try{
+            const res = await API.post('/applicant/experience',data)
             console.log(res)
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+        }
+        catch(error){
+            console.log(error,'error from catch')
+        }
     }
+
+
   return {
     experiencePostData,initialValues,formValidation
   }
